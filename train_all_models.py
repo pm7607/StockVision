@@ -24,7 +24,7 @@ SYMBOLS = [
     "WMT",
     "COST",
     "BABA",
-    "TCS",
+    "TCS.NS",
     "INFY.NS",
     "RELIANCE.NS",
     "HDFCBANK.NS",

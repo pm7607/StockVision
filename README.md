@@ -135,6 +135,9 @@ Possible errors:
 - `404`: model file for symbol does not exist (train first)
 - `400`: invalid symbol or data/model issue
 
+Indian ticker note:
+- API auto-maps common Indian symbols to NSE format (for example `TCS` -> `TCS.NS`, `INFY` -> `INFY.NS`).
+
 ## 7) Deployment notes
 
 ### Render (Backend)

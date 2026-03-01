@@ -21,6 +21,22 @@ class StockRequest(BaseModel):
     symbol: str
 
 
+INDIAN_SYMBOL_ALIASES = {
+    "TCS": "TCS.NS",
+    "INFY": "INFY.NS",
+    "RELIANCE": "RELIANCE.NS",
+    "HDFCBANK": "HDFCBANK.NS",
+    "ICICIBANK": "ICICIBANK.NS",
+    "SBIN": "SBIN.NS",
+    "ITC": "ITC.NS",
+}
+
+
+def canonical_symbol(symbol: str) -> str:
+    normalized = symbol.upper().strip()
+    return INDIAN_SYMBOL_ALIASES.get(normalized, normalized)
+
+
 def _symbol_key(value: str) -> str:
     return value.upper().replace(".", "").replace("_", "").replace("^", "")
 
@@ -73,8 +89,12 @@ def health():
 
 @app.post("/predict")
 def predict(req: StockRequest):
-    symbol = req.symbol.upper()
-    model_path = resolve_model_path(symbol)
+    symbol = req.symbol.upper().strip()
+    market_symbol = canonical_symbol(symbol)
+    model_path = resolve_model_path(market_symbol)
+
+    if not model_path:
+        model_path = resolve_model_path(symbol)
 
     if not model_path or not os.path.exists(model_path):
         raise HTTPException(
@@ -86,7 +106,7 @@ def predict(req: StockRequest):
         with open(model_path, "rb") as f:
             rf_model = pickle.load(f)
 
-        df = model.get_latest_data(symbol)
+        df = model.get_latest_data(market_symbol)
 
         last_row = df[['Open', 'High', 'Low', 'Close', 'Volume']].iloc[-1:].values
         prediction = rf_model.predict(last_row)[0]
