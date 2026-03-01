@@ -9,7 +9,7 @@ def train_model(symbol):
     today = pd.Timestamp(datetime.today().date())
     start_date = today - pd.DateOffset(years=6)
 
-    df = yf.download(symbol, start=start_date)
+    df = yf.download(symbol, start=start_date, progress=False, threads=False)
     if df.empty:
         raise ValueError("Invalid stock symbol")
 
@@ -33,7 +33,20 @@ def train_model(symbol):
     model.fit(X, y)
 
     os.makedirs("models", exist_ok=True)
-    with open(f"models/{symbol}.pkl", "wb") as f:
+    safe_symbol = symbol.replace("^", "").replace(".", "_")
+    with open(f"models/{safe_symbol}.pkl", "wb") as f:
         pickle.dump(model, f)
 
-    return model, df
+    return model
+
+
+def get_latest_data(symbol):
+    df = yf.download(symbol, period="10d", progress=False, threads=False)
+    if df.empty:
+        raise ValueError("No recent data found")
+
+    df.reset_index(inplace=True)
+    df = df[['Open', 'High', 'Low', 'Close', 'Volume']]
+    df.dropna(inplace=True)
+
+    return df

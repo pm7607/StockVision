@@ -3,12 +3,11 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 import pickle
 import os
-import model   
-import uvicorn
+import model
 
 app = FastAPI()
 
-# CORS FIX
+# CORS
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -22,7 +21,11 @@ class StockRequest(BaseModel):
 
 @app.get("/")
 def home():
-    return {"message": "Stock Prediction API running"}
+    return {"status": "Stock Prediction API Running"}
+
+@app.get("/health")
+def health():
+    return {"status": "ok"}
 
 @app.post("/predict")
 def predict(req: StockRequest):
@@ -30,13 +33,17 @@ def predict(req: StockRequest):
     safe_symbol = symbol.replace("^", "").replace(".", "_")
     model_path = f"models/{safe_symbol}.pkl"
 
+    if not os.path.exists(model_path):
+        raise HTTPException(
+            status_code=404,
+            detail=f"Model for {symbol} not found. Train it first."
+        )
+
     try:
-        if os.path.exists(model_path):
-            with open(model_path, "rb") as f:
-                rf_model = pickle.load(f)
-            _, df = model.train_model(symbol)
-        else:
-            rf_model, df = model.train_model(symbol)
+        with open(model_path, "rb") as f:
+            rf_model = pickle.load(f)
+
+        df = model.get_latest_data(symbol)
 
         last_row = df[['Open', 'High', 'Low', 'Close', 'Volume']].iloc[-1:].values
         prediction = rf_model.predict(last_row)[0]
@@ -51,8 +58,3 @@ def predict(req: StockRequest):
 
     except Exception as e:
         raise HTTPException(status_code=400, detail=str(e))
-
-
-if __name__ == "__main__":
-    port = int(os.getenv("PORT", "8000"))
-    uvicorn.run("app:app", host="0.0.0.0", port=port)
