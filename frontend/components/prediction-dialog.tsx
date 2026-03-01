@@ -45,7 +45,7 @@ export function PredictionDialog({ open, onOpenChange }: PredictionDialogProps) 
   const [loading, setLoading] = useState(false);
   const [prediction, setPrediction] = useState<PredictionResult | null>(null);
   const [error, setError] = useState('');
-  const apiBaseUrl = ("https://stockvision-1-mfkx.onrender.com").replace(/\/$/, '');
+  const apiUrl = 'https://stockvisionpredication.onrender.com/predict';
 
   const handlePredict = async () => {
     if (!selectedStock) {
@@ -58,7 +58,7 @@ export function PredictionDialog({ open, onOpenChange }: PredictionDialogProps) 
     setPrediction(null);
 
     try {
-      const response = await fetch(`${apiBaseUrl}/predict`, {
+      const response = await fetch(apiUrl, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
