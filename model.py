@@ -5,7 +5,12 @@ import os
 from sklearn.ensemble import RandomForestRegressor
 from datetime import datetime
 
+
+def model_file_symbol(symbol: str) -> str:
+    return symbol.strip().upper().replace("^", "").replace(".", "_")
+
 def train_model(symbol):
+    symbol = symbol.strip().upper()
     today = pd.Timestamp(datetime.today().date())
     start_date = today - pd.DateOffset(years=6)
 
@@ -33,7 +38,7 @@ def train_model(symbol):
     model.fit(X, y)
 
     os.makedirs("models", exist_ok=True)
-    safe_symbol = symbol.replace("^", "").replace(".", "_")
+    safe_symbol = model_file_symbol(symbol)
     with open(f"models/{safe_symbol}.pkl", "wb") as f:
         pickle.dump(model, f)
 

@@ -76,6 +76,14 @@ python mymodel.py
 
 When prompted, enter a symbol (example `AAPL`).
 
+Train all dropdown symbols in one run:
+
+```bash
+python train_all_models.py
+```
+
+This creates/updates model files inside `models/` for all configured symbols.
+
 Start backend API:
 
 ```bash

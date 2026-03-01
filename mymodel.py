@@ -1,4 +1,4 @@
-from model import train_model
+from model import train_model, model_file_symbol
 
 if __name__ == "__main__":
     print("📈 Model Trainer")
@@ -6,4 +6,5 @@ if __name__ == "__main__":
 
     train_model(symbol)
 
-    print(f"✅ Model trained and saved for: {symbol}")
+    saved_name = model_file_symbol(symbol)
+    print(f"✅ Model trained and saved for: {symbol.upper()} (models/{saved_name}.pkl)")
