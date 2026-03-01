@@ -171,25 +171,25 @@ export function PredictionDialog({ open, onOpenChange }: PredictionDialogProps) 
                 <div className="bg-white p-4 rounded-lg shadow-sm">
                   <p className="text-sm text-muted-foreground">Tomorrow's Open</p>
                   <p className="text-2xl font-bold text-green-600">
-                    ${prediction.tomorrow_open.toFixed(2)}
+                    {prediction.tomorrow_open.toFixed(2)}
                   </p>
                 </div>
                 <div className="bg-white p-4 rounded-lg shadow-sm">
                   <p className="text-sm text-muted-foreground">Tomorrow's High</p>
                   <p className="text-2xl font-bold text-blue-600">
-                    ${prediction.tomorrow_high.toFixed(2)}
+                    {prediction.tomorrow_high.toFixed(2)}
                   </p>
                 </div>
                 <div className="bg-white p-4 rounded-lg shadow-sm">
                   <p className="text-sm text-muted-foreground">Tomorrow's Low</p>
                   <p className="text-2xl font-bold text-orange-600">
-                    ${prediction.tomorrow_low.toFixed(2)}
+                    {prediction.tomorrow_low.toFixed(2)}
                   </p>
                 </div>
                 <div className="bg-white p-4 rounded-lg shadow-sm">
                   <p className="text-sm text-muted-foreground">Tomorrow's Close</p>
                   <p className="text-2xl font-bold text-teal-600">
-                    ${prediction.tomorrow_close.toFixed(2)}
+                    {prediction.tomorrow_close.toFixed(2)}
                   </p>
                 </div>
               </div>
