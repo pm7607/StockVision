@@ -45,6 +45,7 @@ export function PredictionDialog({ open, onOpenChange }: PredictionDialogProps) 
   const [loading, setLoading] = useState(false);
   const [prediction, setPrediction] = useState<PredictionResult | null>(null);
   const [error, setError] = useState('');
+  const apiBaseUrl = (process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000').replace(/\/$/, '');
 
   const handlePredict = async () => {
     if (!selectedStock) {
@@ -57,7 +58,7 @@ export function PredictionDialog({ open, onOpenChange }: PredictionDialogProps) 
     setPrediction(null);
 
     try {
-      const response = await fetch('http://localhost:8000/predict', {
+      const response = await fetch(`${apiBaseUrl}/predict`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
