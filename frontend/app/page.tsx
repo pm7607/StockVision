@@ -22,8 +22,8 @@ export default function Home() {
   const features = [
     {
       icon: Brain,
-      title: 'Machine Learning Model',
-      description: 'Powered by Random Forest algorithm for accurate predictions',
+      title: 'Forecasting Engine',
+      description: 'Uses historical data patterns for price forecasting',
     },
     {
       icon: Database,
@@ -87,7 +87,7 @@ export default function Home() {
             </div>
             <div>
               <h1 className="text-xl font-bold text-slate-900">Stock Price Predictor</h1>
-              <p className="text-xs text-slate-600">ML-Powered Financial Forecasting</p>
+                <p className="text-xs text-slate-600">Data-Driven Financial Forecasting</p>
             </div>
           </div>
           <Button
@@ -105,14 +105,14 @@ export default function Home() {
         <section className="text-center space-y-6 py-12">
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-100 text-blue-700 rounded-full text-sm font-medium">
             <Activity className="h-4 w-4" />
-            AI – ML Powered Stock Prediction Platform
+            Data-Driven Stock Prediction Platform
           </div>
           <h2 className="text-5xl font-bold text-slate-900 leading-tight">
             Stock Price Prediction System
           </h2>
           <p className="text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
-            An intelligent machine learning system that predicts tomorrow's stock prices
-            using historical market data and advanced Random Forest algorithms.
+            A data-driven system that predicts tomorrow's stock prices
+            using historical market data and proven forecasting methods.
           </p>
           <div className="flex gap-4 justify-center pt-4">
             <Button
@@ -157,7 +157,7 @@ export default function Home() {
           <div className="text-center space-y-4">
             <h3 className="text-3xl font-bold text-slate-900">How It Works</h3>
             <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-              Our system uses a sophisticated machine learning pipeline to deliver accurate predictions
+              Our system processes historical market data to deliver reliable predictions
             </p>
           </div>
 
@@ -253,7 +253,7 @@ export default function Home() {
         <section className="bg-gradient-to-r from-blue-600 to-teal-600 rounded-2xl p-12 text-center text-white space-y-6">
           <h3 className="text-3xl font-bold">Ready to Predict Stock Prices?</h3>
           <p className="text-xl text-blue-100 max-w-2xl mx-auto">
-            Try our machine learning model and get tomorrow's price predictions instantly
+            Try our forecasting system and get tomorrow's price predictions instantly
           </p>
           <Button
             onClick={() => setDialogOpen(true)}
@@ -273,7 +273,7 @@ export default function Home() {
             Stock Price Prediction System | Developed by Pratik Mehta | © 2024 All rights reserved.
           </p>
           <p className="text-xs mt-2 text-slate-500">
-            Machine Learning powered by Random Forest | Built with Next.js & FastAPI
+            Forecasting engine based on Random Forest | Built with Next.js & FastAPI
           </p>
         </div>
       </footer>

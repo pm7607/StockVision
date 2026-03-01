@@ -94,7 +94,7 @@ export function PredictionDialog({ open, onOpenChange }: PredictionDialogProps) 
           </DialogTitle>
           <DialogDescription>
             Select a stock symbol to predict tomorrow's prices using our
-            machine learning model.
+            forecasting system.
           </DialogDescription>
         </DialogHeader>
 
@@ -194,7 +194,7 @@ export function PredictionDialog({ open, onOpenChange }: PredictionDialogProps) 
                 </div>
               </div>
               <p className="text-xs text-muted-foreground text-center pt-2">
-                Predictions are based on historical data and machine learning models.
+                Predictions are based on historical market data and statistical forecasting.
                 Past performance does not guarantee future results.
               </p>
             </div>

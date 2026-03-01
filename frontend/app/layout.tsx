@@ -5,22 +5,19 @@ import { Inter } from 'next/font/google';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'Stock Price Predictor - ML College Project',
-  description: 'Predict tomorrow\'s stock prices using machine learning. Random Forest powered prediction system for accurate stock market forecasting.',
+  title: 'Stock Price Predictor - College Project',
+  description: 'Predict tomorrow\'s stock prices using historical market data and a Random Forest forecasting engine.',
   openGraph: {
-    images: [
-      {
-        url: 'https://bolt.new/static/og_default.png',
-      },
-    ],
+    title: 'Stock Price Predictor',
+    description:
+      'Predict tomorrow\'s stock prices using historical market data and a Random Forest forecasting engine.',
+    type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    images: [
-      {
-        url: 'https://bolt.new/static/og_default.png',
-      },
-    ],
+    title: 'Stock Price Predictor',
+    description:
+      'Predict tomorrow\'s stock prices using historical market data and a Random Forest forecasting engine.',
   },
 };
 
