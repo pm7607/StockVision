@@ -45,7 +45,7 @@ export function PredictionDialog({ open, onOpenChange }: PredictionDialogProps) 
   const [loading, setLoading] = useState(false);
   const [prediction, setPrediction] = useState<PredictionResult | null>(null);
   const [error, setError] = useState('');
-  const apiBaseUrl = (process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000').replace(/\/$/, '');
+  const apiBaseUrl = ("https://stockvision-1-mfkx.onrender.com").replace(/\/$/, '');
 
   const handlePredict = async () => {
     if (!selectedStock) {

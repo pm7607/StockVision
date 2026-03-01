@@ -4,6 +4,7 @@ from pydantic import BaseModel
 import pickle
 import os
 import model   
+import uvicorn
 
 app = FastAPI()
 
@@ -50,3 +51,8 @@ def predict(req: StockRequest):
 
     except Exception as e:
         raise HTTPException(status_code=400, detail=str(e))
+
+
+if __name__ == "__main__":
+    port = int(os.getenv("PORT", "8000"))
+    uvicorn.run("app:app", host="0.0.0.0", port=port)
